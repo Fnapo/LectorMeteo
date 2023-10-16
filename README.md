@@ -1,1 +1,6 @@
 # LectorMeteo
+
+Un pequeño proyecto .NET del tipo consola, para poder desentrañar los documentos en formato JSON
+procedentes de la AEMET ...
+
+Sólo pide información respecto a las previsiones para el municipio de Alzira ...
