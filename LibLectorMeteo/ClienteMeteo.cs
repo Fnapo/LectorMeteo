@@ -8,14 +8,14 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace LectorMeteo.Modelos
+namespace LibLectorMeteo
 {
 	/*
      * 
      * Cliente Http para realizar una consulta a Opendata de la Aemet.
      * 
      */
-	internal static class ClienteMeteo
+	public static class ClienteMeteo
 	{
 
 		private static readonly HttpClient cliente = new HttpClient();

@@ -12,8 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Librerias\LibClienteHttpUTF8\LibClienteHttpUTF8.csproj" />
-    <ProjectReference Include="..\..\Librerias\LibClienteMeteo\LibClienteMeteo.csproj" />
+    <Folder Include="Modelos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LibLectorMeteo\LibLectorMeteo.csproj" />
   </ItemGroup>
 
 </Project>

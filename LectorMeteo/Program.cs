@@ -1,4 +1,4 @@
-﻿using LectorMeteo.Modelos;
+﻿using LibLectorMeteo;
 
 namespace LectorMeteo
 {
