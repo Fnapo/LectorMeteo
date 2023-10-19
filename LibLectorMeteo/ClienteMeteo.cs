@@ -19,11 +19,7 @@ namespace LibLectorMeteo
 	{
 
 		private static readonly HttpClient cliente = new HttpClient();
-		// Parte final de los ficheros donde se guardan los datos
-		private static readonly string nombreFichero = ".txt";  // Los datos iniciales.
-		private static readonly string nombreFichero2 = "Url.txt";  // La URL con los datos útiles
-		private static readonly string nombreFichero3 = "Temperaturas.txt"; // Los datos útiles
-																			// Partes de la URL inicial
+		// Partes de la URL inicial
 		private static readonly string servidor = "https://opendata.aemet.es/opendata";
 		private static readonly string api = "/api/prediccion/especifica/municipio/diaria";
 		//static private string municipio="/{municipio}";
@@ -111,79 +107,9 @@ namespace LibLectorMeteo
 			return listaDatos ?? new();
 		}
 
-		public async static Task EscribirPredicciones(string municipio, List<Datos> listaDatos, bool mostrar = true)
-		{
-			using (StreamWriter mifichero = new StreamWriter(municipio + nombreFichero3))
-			{
-				foreach (Datos dato in listaDatos)
-				{
-					foreach (Medidas med in dato.Prediccion.Medidas)
-					{
-						string cadena =
-							$"\n\tPredicciones para el día: {med.Fecha.Date:d}.\nMaxima:{med.Temperaturas.Maxima}. Mínima: {med.Temperaturas.Minima}.";
-						if (mostrar)
-						{
-							Console.WriteLine(cadena);
-						}
-						await mifichero.WriteLineAsync(cadena);
-						foreach (ParHoraTemperatura par in med.Temperaturas.Datos)
-						{
-							cadena = $"Temperatura: {par.Temperatura}, Hora: {par.Hora}";
-
-							if (mostrar)
-							{
-								Console.WriteLine(cadena);
-							}
-							await mifichero.WriteLineAsync(cadena);
-						}
-					}
-				}
-				mifichero.Close();
-			}
-		}
-
 		private static void CrearDatosFinales(DatosUrl datos)
 		{
 			urlFinal = datos.URL;
 		}
-
-		static async public Task EscribirCadena(string municipio, string cadena, bool mostrar = true)
-		{
-			using (StreamWriter mifichero = new StreamWriter(municipio + nombreFichero))
-			{
-				if (mostrar)
-				{
-					Console.WriteLine(cadena);
-				}
-				await mifichero.WriteAsync(cadena);
-				mifichero.Close();
-			}
-		}
-
-		static async public Task EscribirURL(string municipio, DatosUrl datos, bool mostrar = true)
-		{
-			using (StreamWriter mifichero = new StreamWriter(municipio + nombreFichero2))
-			{
-				if (datos != null && !string.IsNullOrEmpty(datos.URL))
-				{
-					string cadena = $"Estado: {datos.Estado}, URL: {datos.URL}";
-
-					if (mostrar)
-					{
-						Console.WriteLine(cadena);
-					}
-					await mifichero.WriteLineAsync(cadena);
-				}
-				else
-				{
-					string cadena = "Sin URL asociada ...";
-
-					Console.WriteLine(cadena);
-					await mifichero.WriteLineAsync(cadena);
-				}
-				mifichero.Close();
-			}
-		}
 	}
-
 }

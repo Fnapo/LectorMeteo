@@ -13,14 +13,14 @@ namespace LectorMeteo
 			string cadena = await ClienteMeteo.ObtenerCadenaURL(municipio);
 			var datos = await ClienteMeteo.ObtenerDatosURL(municipio);
 
-			await ClienteMeteo.EscribirCadena(municipio, cadena);
-			await ClienteMeteo.EscribirURL(municipio, datos);
+			await EscritorMeteo.EscribirCadena(municipio, cadena);
+			await EscritorMeteo.EscribirURL(municipio, datos);
 			if (!string.IsNullOrEmpty(datos.URL))
 			{
 				var listaDatos = await ClienteMeteo.ObtenerDatosUtiles(datos);
 				if (listaDatos.Count > 0)
 				{
-					await ClienteMeteo.EscribirPredicciones(municipio, listaDatos);
+					await EscritorMeteo.EscribirPredicciones(municipio, listaDatos);
 				}
 			}
 			Console.WriteLine("\n\t\tSalida exitosa ...");

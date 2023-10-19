@@ -13,5 +13,7 @@ namespace LibLectorMeteo
      * Así de farragosos son los datos proporcionados por la Aemet
      * 
      */
-    public record class Datos([property: JsonPropertyName("prediccion")] Prediccion Prediccion);
+    public record class Datos(
+		[property: JsonPropertyName("nombre")] string Municipio,
+		[property: JsonPropertyName("prediccion")] Prediccion Prediccion);
 }
