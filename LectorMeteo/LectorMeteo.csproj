@@ -15,4 +15,8 @@
     <Folder Include="Modelos\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Librerias\LibLectorMeteo\LibLectorMeteo.csproj" />
+  </ItemGroup>
+
 </Project>
